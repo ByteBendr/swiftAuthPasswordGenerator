@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftAuth Password Generator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full viewport height */
+            flex-direction: column; /* Align content vertically */
+        }
+        #password-container {
+            text-align: center;
+            margin-bottom: 60px; /* Add margin to separate from footer */
+        }
+        #password {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 40px 0;
+            padding: 20px;
+            /* border: 0px solid #007bff; */
+            border-radius: 100px;
+            background-color: #e9ecef;
+            box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.1);
+            user-select: all;
+            width: 100%;
+            text-align: center;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            margin: 0 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 123, 255, 0.2);
+        }
+        .copy-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 200px;
+            z-index: 1050;
+        }
+        #countdown {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #6c757d;
+        }
+        /* Footer styles */
+        footer {
+            background-color: #343a40; /* Dark gray background */
+            color: white; /* White text color */
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="password-container">
+        <h1 class="text-center my-4">SwiftAuth Password Generator</h1>
+        <div class="d-flex flex-column align-items-center">
+            <div id="password" class="shadow-sm">Generating...</div>
+            <div class="action-buttons">
+                <button class="copy-button" onclick="copyPassword()">Copy</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#generateCSVModal">Generate CSV</button>
+            </div>
+        </div>
+        <div id="countdown" class="text-center">Next Password in: 20s</div>
+    </div>
+    <div aria-live="polite" aria-atomic="true" style="position: relative;">
+        <div class="toast" id="toast" style="display: none;">
+            <div class="toast-header">
+                <strong class="mr-auto">Notification</strong>
+                <small>Just now</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Password copied to clipboard!
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="generateCSVModal" tabindex="-1" role="dialog" aria-labelledby="generateCSVModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="generateCSVModalLabel">Generate CSV File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Enter the number of passwords to generate:</p>
+                    <input type="number" id="passwordCount" class="form-control" min="0" value="10">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="generateCSV()">Generate CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <<<<< Made with ❤ by Lucian >>>>>
+    </footer>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Script containing JavaScript functions -->
+    <script src="script.js"></script>
+</body>
+</html>
